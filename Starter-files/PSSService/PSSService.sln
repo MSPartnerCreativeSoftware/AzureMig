@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSSService", "PSSService.csproj", "{5F3B8ACB-550B-498E-9318-30718928F693}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F3B8ACB-550B-498E-9318-30718928F693}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F3B8ACB-550B-498E-9318-30718928F693}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F3B8ACB-550B-498E-9318-30718928F693}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F3B8ACB-550B-498E-9318-30718928F693}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB201C76-AF1A-4709-9FD7-6689AA6D8FDF}
+	EndGlobalSection
+EndGlobal

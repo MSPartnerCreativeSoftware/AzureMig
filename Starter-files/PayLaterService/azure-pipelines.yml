@@ -1,0 +1,81 @@
+# Docker
+# Build and push an image to Azure Container Registry
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:
+  imageRepository: 'paylaterservice'
+  containerRegistry: 'slaacr.azurecr.io'
+  dockerfilePath: 'Dockerfile'
+  tag: '$(Build.BuildId)'
+
+  # helm chart name
+  helmChart: 'paylaterservice'
+  
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+stages:
+- stage: BuildArtifact
+  displayName: Build and save artifact
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: DotNetCoreCLI@2
+      inputs:
+        command: 'build'
+        projects: '**/*.csproj'
+        arguments: '-c Release -o $(Build.ArtifactStagingDirectory)'
+        workingDirectory: '$(Build.SourcesDirectory)/'
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'build'
+        publishLocation: 'Container'
+- stage: Containerize
+  displayName: Build docker container and push image to registy
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: Build and push
+      inputs:
+        containerRegistry: 'slaacr'
+        repository: '$(imageRepository)'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile'
+        tags: '$(tag)'
+
+- stage: Deploy
+  displayName: Deploy to AKS using helm
+  jobs:
+  - job: Deploy
+    displayName: Deploy
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+      - task: HelmInstaller@0
+        inputs:
+          helmVersion: '3.0.0'
+          installKubectl: true
+      - task: HelmDeploy@0
+        inputs:
+          connectionType: 'Kubernetes Service Connection'
+          kubernetesServiceConnection: 'slaaks'
+          namespace: 'default'
+          command: 'upgrade'
+          chartType: 'FilePath'
+          chartPath: '$(Build.SourcesDirectory)/charts/$(helmChart)'
+          releaseName: '$(helmChart)'
+          overrideValues: 'image.tag=$(tag)'
