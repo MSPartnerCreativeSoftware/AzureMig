@@ -6,7 +6,7 @@
 
 ##Solution Architecture
 
-![MicrosoftTeams-image.png](/.attachments/MicrosoftTeams-image-57c2a0e9-663a-4e0d-917c-122265a6b91a.png)
+![MicrosoftTeams-image.png](/attachments/MicrosoftTeams-image-57c2a0e9-663a-4e0d-917c-122265a6b91a.png)
 
 **Note:** Amedius Client is mocked by SOAP service client hosted at [http://soapservice.eastus.azurecontainer.io/Service.asmx](http://soapservice.eastus.azurecontainer.io/Service.asmx)
 
