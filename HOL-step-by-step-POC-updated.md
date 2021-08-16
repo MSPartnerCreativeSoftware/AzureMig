@@ -6,7 +6,7 @@
 
 ##Solution Architecture
 
-![MicrosoftTeams-image.png](/.attachments/MicrosoftTeams-image-57c2a0e9-663a-4e0d-917c-122265a6b91a.png)
+![MicrosoftTeams-image.png](media/MicrosoftTeams-image-57c2a0e9-663a-4e0d-917c-122265a6b91a.png)
 
 
 **Note:** Amedius Client is mocked by SOAP service client hosted at [https://samplesoapservice.azurewebsites.net/Service.asmx](https://samplesoapservice.azurewebsites.net/Service.asmx)
@@ -39,20 +39,20 @@ Goto [Azure Portal](https://portal.azure.com/)
 Create new _Resource Group_ named **sla-rg** (or anyname) and select region as west US 2 or  East us
 
 
-![image.png](/.attachments/image-0e49628f-0e0b-46f9-8ed6-c98af31ef592.png)
+![image.png](media/image-0e49628f-0e0b-46f9-8ed6-c98af31ef592.png)
 >_Note: Remeber this name, it will be needed next steps_ 
 
 And `Click Review+Create` -> `Create` .
 
 #### 2. Create ACR -Azure Container Registry
 
-![image.png](/.attachments/image-7ac0fa0f-fa97-4692-9f57-abd8e323e0f4.png)
+![image.png](media/image-7ac0fa0f-fa97-4692-9f57-abd8e323e0f4.png)
 
 - Open the newly created resource group and click `+Add ` 
 - Search for "container registry" and select `Azure container registry` - > `Create` .
 
 - Create new _Container Registry_ named **slaacr** (or anyname).
-![image.png](/.attachments/image-2da92afd-21d6-4e07-aa43-b0e614ad9362.png)
+![image.png](media/image-2da92afd-21d6-4e07-aa43-b0e614ad9362.png)
 
 >_Note: Remeber this name, it will be needed next steps_
 
@@ -64,16 +64,16 @@ And `Click Review+Create` -> `Create` .
 #### 3. Create AKS- Azure Kubernets Service Cluster
 **Follow these steps when creating Kubernetes Cluster.**
 - Create new _Kubernetes Service_ named **slaaks** (or anyname) in the same resource group. 
-![image.png](/.attachments/image-bddd2861-6e3e-4f9a-a148-c1f770c382c5.png)
+![image.png](media/image-bddd2861-6e3e-4f9a-a148-c1f770c382c5.png)
 >_Note: Remeber this name, it will be needed next steps_
 
 - switch to Authentication Tab and select **System-assigned managed identity** as Authentication method.
 
-![image.png](/.attachments/image-dd0263cf-8cb0-4592-9fc8-bb5a15182246.png)
+![image.png](media/image-dd0263cf-8cb0-4592-9fc8-bb5a15182246.png)
 
 - Next Integrations tab select created container registry in "Container registry" field.
 
-![image.png](/.attachments/image-ee04c40e-ff2c-41ab-bfa1-6fb97beeeb61.png)
+![image.png](media/image-ee04c40e-ff2c-41ab-bfa1-6fb97beeeb61.png)
 
 - Then `Review + create`->`Create` .
 
@@ -97,7 +97,7 @@ az aks show --resource-group testing-rg --name slaaks1 --query addonProfiles.htt
 - open the `Organization` .
 - Then click on **+New Project** to create new project. Give **SLA** as Project Name, select **Private** and click **Create**.
 
-![image.png](/.attachments/image-2067d7ea-9eee-4041-b449-e7afa9c21eff.png)
+![image.png](media/image-2067d7ea-9eee-4041-b449-e7afa9c21eff.png)
 
 
 ### 5. Import Lab resources to Azure DevOps
@@ -120,7 +120,7 @@ git commit -m "initial commit"
 
 Then use Commands in _Push an existing repository from command line_ to import.
 
-![Annotation 2020-12-07 170114.png](/.attachments/Annotation2-c3e405e9-7f7d-45cd-a16d-98c77a15a6c8.png)
+![Annotation 2020-12-07 170114.png](media/Annotation2-c3e405e9-7f7d-45cd-a16d-98c77a15a6c8.png)
  
 
 #### 2. Import **PSSService**
@@ -141,7 +141,7 @@ Create new repository named **PSSService** in DevOps project. Goto `starter-file
 **Note:**
 > Dont forget to select `Grant permission to all pipelines`  .
 
-![image.png](/.attachments/image-4ad64ec4-8507-4f6a-abde-c85b62f7c324.png)
+![image.png](media/image-4ad64ec4-8507-4f6a-abde-c85b62f7c324.png)
 
 7. Save.
 
@@ -151,7 +151,7 @@ Create new repository named **PSSService** in DevOps project. Goto `starter-file
 **Note:**
 > Dont forget to select `Grant permission to all pipelines`  .
 
-![image.png](/.attachments/image-3799cfb7-0f7b-419e-b2fd-c9cac8ef24e2.png)
+![image.png](media/image-3799cfb7-0f7b-419e-b2fd-c9cac8ef24e2.png)
 
 11. Save.
 12. similarly create a service conneciton for `AKS-prod`  and name it `slaaks-prod`
@@ -168,18 +168,18 @@ To make the exercise easier we have already hosted the SOAP client as a containe
 1. Open starter-files/PSSService folder . 
 1. Open PSSService.Sln {on Visual Studio} 
 1. on Solution Explorer Navigate to `PSService-> Connected Services -> Service Reference1` and open  `ConnectedService.json` .
-![image.png](/.attachments/image-7027bfb7-7063-4706-a25f-ac65183ee891.png)
+![image.png](media/image-7027bfb7-7063-4706-a25f-ac65183ee891.png)
 
 1. on  `ConnectedService.json` update 'ExtendedData.inputs' value on line 6 with the SOAP client URL ( https://samplesoapservice.azurewebsites.net/Service.asmx) .
 
 1. save `ConnectedService.json` . The updated `ConnectedService.json` should now look like below 
-![image.png](/.attachments/image-17d1cecf-ea4e-4f6a-90a5-d259272be4b4.png)
+![image.png](media/image-17d1cecf-ea4e-4f6a-90a5-d259272be4b4.png)
 
 1. Right Click on `ServiceReference1` and click `Update Microsoft WCF Web Service Reference Provider... .
-![image.png](/.attachments/image-f39c20a9-4dac-4932-9c62-a2abb511afa0.png)
+![image.png](media/image-f39c20a9-4dac-4932-9c62-a2abb511afa0.png)
 
 1. run the service locally by pressing `Ctrl+F5`  or clicking on the run method on top ribbon(select PSSservice from drop down) .
-![image.png](/.attachments/image-170d07d3-25cd-4516-98da-1b0832c3d29b.png)
+![image.png](media/image-170d07d3-25cd-4516-98da-1b0832c3d29b.png)
 
 1. Now a new browser window will be opened and a `json` object is returned
 `{"id":12,"firstName":"Nilaan","lastName":"Logan","bookingDate":"2020-12-07T12:42:27.1698983+05:30","status":"Success"}` 
@@ -190,13 +190,13 @@ _Optionally if you prefer to setup the SOAP endpoint by your self follow the bel
 ##Exercise 2
 
 1. First on Solution Explorer Navigate to `PSService-> Connected Services  and right click on `Service Reference1` and select delete .(Confirm if any warning prompted) .
-![image.png](/.attachments/image-7027bfb7-7063-4706-a25f-ac65183ee891.png)
+![image.png](media/image-7027bfb7-7063-4706-a25f-ac65183ee891.png)
 
 1. Now right click on `Connected Services` and click `Add Connected Services`
 
 1. scroll below and On the `Other Services` section click on the “Microsoft WCF Web Service Reference Provider” and wait for the “Configure WCF Web Service Reference” wizard to open.
 1. In the “Configure WCF Web Service Reference” window, specify the URI of the `SOAP service` (https://samplesoapservice.azurewebsites.net/Service.asmx) as shown in Figure 
-![image.png](/.attachments/image-df3c1381-849f-4781-8f59-774412313e0d.png)
+![image.png](media/image-df3c1381-849f-4781-8f59-774412313e0d.png)
 
 1. Click Go to view the available services(Optional).Optionally you can provide  a `**namespace** ` but we leave that to the default value `**ServiceReference1**`
 
@@ -224,7 +224,7 @@ This section show how to configure a pipeline to build and  deploy to AKS cluste
 
 This diagram shows high level view of this pipeline and AKS cluster.
 
-![SLA diagram.png](/.attachments/SLAdiagram-daf79d44-9a69-45f5-adb1-7f922c5538e3.png)
+![SLA diagram.png](media/SLAdiagram-daf79d44-9a69-45f5-adb1-7f922c5538e3.png)
 ### 0. update Helm charts
 1. Open PSService on Visual Studio and expand Chart folder - > open values.yaml and update `image.repository` inline 7 with your repository details
 
@@ -250,7 +250,7 @@ image:
 ### 1. Pipeline for **PSSService**
 1. Goto PSSService in DevOps project repos.
 2. Click **Set up build** in top right corner. 
-![image.png](/.attachments/image-d2123f55-c6f4-49d9-aca5-f2688c388b9a.png)
+![image.png](media/image-d2123f55-c6f4-49d9-aca5-f2688c388b9a.png)
 3. Select **Existing Azure Pipelies YAML file**.
 4. Find and select `azure-pipelines.yaml` file from the repo.
 5. In review update **containerRegistry** in variables section if you have used different ACR service connection name on Exercise 1.
@@ -262,7 +262,7 @@ image:
 ### 2. Pipeline for **PayLaterService**
 1. Goto PayLaterService in DevOps project repos.
 2. Click **Set up build** in top right corner. 
-![image.png](/.attachments/image-d2123f55-c6f4-49d9-aca5-f2688c388b9a.png)
+![image.png](media/image-d2123f55-c6f4-49d9-aca5-f2688c388b9a.png)
 3. Select **Existing Azure Pipelies YAML file**.
 4. Find and select `azure-pipelines.yaml` file from the repo.
 5. In review update **containerRegistry** in variables section if you have used different ACR service connection name on Exercise 1.
@@ -272,7 +272,7 @@ image:
 
 After deployment is completed you can goto **slaaks** resource in [Azure Portal](https://portal.azure.com/) and then goto **Services and Ingresses**.
 
-![image.png](/.attachments/image-b7abd4ad-be0c-4524-aac6-760fb2ceeab6.png)
+![image.png](media/image-b7abd4ad-be0c-4524-aac6-760fb2ceeab6.png)
 
 This is the api end of **PayLaterService**.
 
@@ -293,22 +293,22 @@ In this exercise we are going to configure release pipelines for PayLaterService
 1. Goto DevOps project.
 2. Goto **Releases** under Pipelines section.
 3. Click on **New Pipeline**.
-![Annotation 2020-12-09 162225.png](/.attachments/new-pipeline.png) 
+![Annotation 2020-12-09 162225.png](media/new-pipeline.png) 
 
 4. Select **Empty Job** on opened tab.
 
 5. Click on Artifacts **Add** and select the build we created in build pipelines.
-![image.png](/.attachments/image-f089e254-24b7-45d0-b661-570e4f93aea0.png)
+![image.png](media/image-f089e254-24b7-45d0-b661-570e4f93aea0.png)
 > We are not going to use these files in this exercise, but we need the variables that are imported with the build files for next steps. _For more info about pipeline variables check this [link](https://docs.microsoft.com/en-us/azure/devops/pipelines/release/variables?view=azure-devops&tabs=batch)_
 
 6. Add another new artifact and select **PSSService** repo from Azure Repos Git.
-![image.png](/.attachments/image-7c65b425-0d35-4d63-879a-4a6a42f31e9a.png)
+![image.png](media/image-7c65b425-0d35-4d63-879a-4a6a42f31e9a.png)
 > The helm charts in the repo is used for helm deployment.
 
 *****Note: Make sure "_PSSService_Build" is set as "Primary Artifact". You can check this by selecting artifact and then in the tab opened click "..." icon in top right corner.***
 
 7. Next In Stages section goto Tasks/Jobs section.
-![image.png](/.attachments/image-bdb829a7-de50-4967-a3ad-915f7db7815e.png)
+![image.png](media/image-bdb829a7-de50-4967-a3ad-915f7db7815e.png)
 
 6. Select **Agent Job** and change its "Agent Specification" to "Ubuntu <latest>".
  > Step 6 is not required
@@ -316,7 +316,7 @@ In this exercise we are going to configure release pipelines for PayLaterService
 7. Click **+** sign on **Agent Job** to add new job.
 
 8. Select **Helm tool installer** from the selection and click on **Add**.
-![image.png](/.attachments/image-014c3b07-ca93-45e2-8cd8-8f6ff5128d88.png)
+![image.png](media/image-014c3b07-ca93-45e2-8cd8-8f6ff5128d88.png)
 
 9. We can use its default setting for this example.
 
@@ -331,8 +331,8 @@ Set `Chart Path` to you repo's `charts/pssservice` folder.
 Set `Release Name` to `pssservice`.
 Set `Set Values` to `image.tag=$(Build.BuildId)`
 Check `Install if release not present.` and `Wait`.
-![image.png](/.attachments/image-4dc47faf-7c84-4ecd-bd92-f813ab5c3cb4.png)
-![image.png](/.attachments/image-a9d8cb24-436f-43f9-a2b4-b4fe5e38ce37.png)
+![image.png](media/image-4dc47faf-7c84-4ecd-bd92-f813ab5c3cb4.png)
+![image.png](media/image-a9d8cb24-436f-43f9-a2b4-b4fe5e38ce37.png)
 
 > **Set Values** is used to override values.yml in helm charts.
 > **$(Build.BuildId)** is a variable imported with the artifact(in _Step 5_).
@@ -352,11 +352,11 @@ image.tag=$(Build.BuildId),ingress.hosts[0].host="paylater.<HTTPApplicationRouti
 ### Some Additional Features
 1. Triggers (Lighting icon)
 Triggers can be added to artifacts and stages.
-![image.png](/.attachments/image-c1789868-646c-4464-8d23-41fe9eb9a792.png)
+![image.png](media/image-c1789868-646c-4464-8d23-41fe9eb9a792.png)
 
 2. Pre-deployment approvals (Person icon)
 Can be added to each stage.
-![image.png](/.attachments/image-62ef5032-d69b-42af-a072-6d0b1330c2ef.png)
+![image.png](media/image-62ef5032-d69b-42af-a072-6d0b1330c2ef.png)
 
 3. Post-deployment approvals
 
